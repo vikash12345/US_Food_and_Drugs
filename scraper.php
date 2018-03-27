@@ -5,7 +5,13 @@
 require 'scraperwiki.php';
 require 'scraperwiki/simple_html_dom.php';
 
-
+		$link	=	'https://www.accessdata.fda.gov/scripts/SDA/sdNavigation.cfm?sd=clinicalinvestigatorsdisqualificationproceedings&previewMode=true&displayAll=true';
+		$html	=	file_get_html($link);
+		foreach($html->find("//*[@id='user_provided']/table/tbody/tr/td/table/tbody/tr[6]/td/div/table/tbody/tr") as $element)
+		{
+			$plink	=	$element->find("td",0)->href;
+			echo "$plink\n";
+		}
 //https://www.accessdata.fda.gov/scripts/SDA/sdNavigation.cfm?sd=clinicalinvestigatorsdisqualificationproceedings&previewMode=true&displayAll=true
 
 // // Read in a page
