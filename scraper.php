@@ -14,8 +14,90 @@ require 'scraperwiki/simple_html_dom.php';
 			$Inpage	=	file_get_html($innerpage);
 			sleep(5);
 			if($Inpage)
-			{
+			{		
+					//This is for Name
+					$name			=	$Inpage->find("//td[plaintext^=Name:]", 0);
+					if($name == null || $name == "")
+					{
+						$name	=	"Not Available";
+					}
+					else
+					{
+						$name	=	$name->next_sibling()->plaintext;
+					}
+					//This is for Center
+					$center			=	$Inpage->find("//td[plaintext^=Center:]", 0);
+					if($center == null || $center == "")
+					{
+						$center	=	"Not Available";
+					}
+					else
+					{
+						$center	=	$center->next_sibling()->plaintext;
+					}
+			
+						
+					//This is for City
+					$city			=	$Inpage->find("//td[plaintext^=City:]", 0);
+					if($city == null || $city == "")
+					{
+						$city	=	"Not Available";
+					}
+					else
+					{
+						$city	=	$city->next_sibling()->plaintext;
+						
+					}
+			
 				
+				
+					//This is for State
+					$state			=	$Inpage->find("//td[plaintext^=State:]", 0);
+					if($state == null || $state == "")
+					{
+						$state	=	"Not Available";
+					}
+					else
+					{
+						$state	=	$state->next_sibling()->plaintext;
+						
+					}
+			
+				
+				
+					//This is for Status
+					$status			=	$Inpage->find("//td[plaintext^=Status:]", 0);
+					if($status == null || $status == "")
+					{
+						$status	=	"Not Available";
+					}
+					else
+					{
+						$status	=	$status->next_sibling()->plaintext;
+						
+					}
+			
+				
+				
+				
+					//This is for Date of status: 
+					$dos			=	$Inpage->find("//td[plaintext^=Date of status:]", 0);
+					if($dos == null || $dos == "")
+					{
+						$dos	=	"Not Available";
+					}
+					else
+					{
+						$dos	=	$dos->next_sibling()->plaintext;
+						
+					}
+			
+scraperwiki::save_sqlite(array('name'), array('name'=> $name,'center'=> $center,'city'=> $city,'state'=> $state,'status'=> $status,'dos'=> $dos,'innerpage'=> $innerpage,'link' => $link));
+
+				
+				
+				 			
+			
 			}
 			
 			
