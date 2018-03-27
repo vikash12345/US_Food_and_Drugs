@@ -9,9 +9,20 @@ require 'scraperwiki/simple_html_dom.php';
 		$html	=	file_get_html($link);
 		foreach($html->find("//*[@id='user_provided']/table/tbody/tr/td/table/tbody/tr[6]/td/div/table/tbody/tr") as $element)
 		{
-			$plink	=	$element->find("td",0)->href;
-			echo "$plink\n";
+			$plink	=	$element->find("td/a",0)->href;
+			$innerpage	=	'https://www.accessdata.fda.gov/scripts/SDA/'.$plink;
+			$Inpage	=	file_get_html($innerpage);
+			sleep(5);
+			if($Inpage)
+			{
+				
+			}
+			
+			
 		}
+
+
+
 //https://www.accessdata.fda.gov/scripts/SDA/sdNavigation.cfm?sd=clinicalinvestigatorsdisqualificationproceedings&previewMode=true&displayAll=true
 
 // // Read in a page
